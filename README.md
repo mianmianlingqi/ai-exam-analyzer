@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📑 AI 电子信息试卷阅读分析器 (AI Exam Analyzer)
 
-## Getting Started
+这是一个基于 Next.js 15 和现代前端技术栈构建的专业化 AI 试卷分析工具。它专为**电子信息类**教育场景设计，能够深度解析 PDF 试卷内容，并以极具动感的流式瀑布效果呈现分析结果。
 
-First, run the development server:
+---
+
+## ✨ 核心特性
+
+- **🚀 深度 AI 识别**：采用高性能 VLM (Vision Language Model) 接口，精准抓取试卷中的题目、知识点、难度和解析。
+- **🌊 流式瀑布进入动画**：
+  - **逐题加载**：题目像水流一样依次划入视图，告别平铺直叙的枯燥显示。
+  - **高度可调**：支持在设置面板中实时调节“播放延时”和“动画速度”（1s - 10s）。
+  - **同步等待机制**：专门设计的“数据同步中”加载动画，确保 AI 处理与视觉节奏完美衔接。
+- **💾 本地文件系统存储**：
+  - **自动持久化**：分析完成后，系统会自动在服务器 `outputs/` 目录下保存 `.json` 数据和对应的 `.pdf` 原文件。
+  - **历史记录回溯**：内置“历史记录”侧边栏，支持一键载入本地已保存的分析成果。
+- **🛠️ 专业工作台 UI**：针对电子信息学科优化的布局，采用工业级设计风格（电路板纹理、等距网格线）。
+
+---
+
+## 🛠️ 技术栈
+
+- **前端**: Next.js 15 (App Router), TypeScript, Tailwind CSS
+- **后端**: Node.js API Routes, `fs` 文件系统操作
+- **PDF处理**: `pdf.js`
+- **样式**: CSS Keyframes + 动态封装的动画时长管理
+
+---
+
+## 🚀 快速开始
+
+首先，安装依赖并启动开发服务器：
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 [http://localhost:3000](http://localhost:3000) 即可开始。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 目录结构
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/components/exam-analyzer-workbench.tsx`: 核心分析引擎与 UI 逻辑。
+- `src/lib/storage.ts`: 本地磁盘存储通用封装。
+- `src/app/api/storage/`: 负责数据读写的后端路由。
+- `outputs/`: 存储分析产物的默认本地文件夹（数据、PDF）。
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📅 版本信息
+- **V1.5.0**: 新增流式链式加载动画，优化本地存储逻辑，支持动画速度自定义。
